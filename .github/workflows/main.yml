@@ -2,7 +2,6 @@
 
 name: CI
 
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -13,6 +12,13 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      env:
+        description: 'env'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Environment'  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,15 +26,3 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        env:
-           GITHUB_CONTEXT: ${{ tojson(github) }}
-           ENVIRONMENT: ${{ github.event.deployment.environment }}
-        run: |
-           echo "$GITHUB_CONTEXT"
-           echo $ENVIRONMENT
