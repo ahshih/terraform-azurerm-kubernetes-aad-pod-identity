@@ -14,11 +14,9 @@ on:
   workflow_dispatch:
     inputs:
       env:
-        description: 'env'     
+        description: 'Target Environment'     
         required: true
-        default: 'warning'
-      tags:
-        description: 'Environment'  
+        default: 'dev' 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
